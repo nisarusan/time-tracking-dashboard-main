@@ -9,7 +9,6 @@
 
     <title>Frontend Mentor | Time tracking dashboard</title>
 
-    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap')
 
@@ -25,18 +24,19 @@
             color: #FFFF;
             font-style: normal;
             background: hsl(226, 43%, 10%);
+            display: flex;
+            align-items: center;
+            height: 100vh;
         }
 
         .grid-container {
             max-width: 116rem;
-            width: calc(100% - 2rem * 2);
-            max-height: 520px;
-            height: 100%;
+            width: calc(100% - 3rem * 2);
             margin-inline: auto;
             margin: 0 auto;
             display: grid;
-            grid-template-rows: repeat(4, 1fr);
             gap: 1.875rem;
+            grid-template-rows: repeat(4, 1fr);
             grid-template-areas: "profile"
                                  "work"
                                  "play"
@@ -65,7 +65,7 @@
         /*- Pale Blue: hsl(236, 100%, 87%)*/
 
         .card {
-            border-radius: 2rem;
+            border-radius: .75rem;
             overflow: hidden;
             outline: none;
         }
@@ -73,91 +73,161 @@
         .card-profile {
             background: hsl(246, 80%, 60%);
             grid-area: profile;
+            border-radius: .75rem;
         }
 
         .card-bottom {
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
-            -moz-border-radius-topleft: 1rem;
-            -moz-border-radius-topright: 1rem;
+            border-top-left-radius: .75rem;
+            border-top-right-radius: .75rem;
+            -moz-border-radius-topleft: .75rem;
+            -moz-border-radius-topright: .75rem;
+            height: 100%;
             padding: 1rem;
             background: hsl(235, 46%, 20%);
         }
+
         .card-bottom-title {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .card-work {
             grid-area: work;
+            background: hsl(15, 100%, 70%);
+        }
+
+        .card-play {
             background: hsl(43, 84%, 65%);
+
         }
 
         .card-detail {
             background-repeat: no-repeat;
             background-position: right 0 top -10px;
-            background-image: url("images/icon-work.svg");
             /*background: hsl(43, 84%, 65%);*/
-
+            height: 18%;
         }
 
         .card-work > .card-detail {
+            background-image: url("images/icon-work.svg");
             outline: none;
-            height: 25%;
         }
 
+        .card-play > .card-detail {
+            background-image: url("images/icon-play.svg");
+        }
 
+        .card-study .card-detail {
+            background-image: url("images/icon-study.svg");
+        }
+
+        .card-exercise .card-detail {
+            background-image: url("images/icon-exercise.svg");
+        }
+
+        .card-social .card-detail {
+            background-image: url("images/icon-social.svg");
+
+        }
+
+        .card-care .card-detail {
+            background-image: url("images/icon-self-care.svg");
+        }
 
         .card-play {
             grid-area: play;
-            background: hsl(235, 46%, 20%);
+            background: hsl(195, 74%, 62%);
 
         }
 
         .card-study {
             grid-area: study;
-            background: hsl(235, 46%, 20%);
+            background: hsl(348, 100%, 68%);
 
         }
 
         .card-exercise {
             grid-area: exercise;
-            background: hsl(235, 46%, 20%);
+            background: hsl(145, 58%, 55%);
 
         }
 
         .card-social {
             grid-area: social;
-            background: hsl(235, 46%, 20%);
+            background: hsl(264, 64%, 52%);
 
         }
 
         .card-care {
             grid-area: care;
+            background: hsl(43, 84%, 65%);
+        }
+
+        .card-profile-detail {
+            padding: 2rem;
+            border-radius: 2rem;
+            height: 75%;
+        }
+
+        .card-profile-detail .src {
+            width: 25%;
+        }
+
+        .card-week {
+            height: 40%;
             background: hsl(235, 46%, 20%);
         }
 
-        @media (min-width: 768px) {
+        .card-week ul {
+            list-style: none;
+        }
+
+        /*.card-week ul li {*/
+        /*    padding: 1rem 0;*/
+        /*}*/
+
+        @media (min-width: 640px) {
             .grid-container {
                 grid-template-columns: repeat(4, 1fr);
-                grid-template-rows: repeat(4, 1fr);
-                grid-template-areas: "profile work play study"
-                                 "profile exercise social care";
+                grid-template-rows: repeat(3, 1fr);
+                grid-template-areas: "profile profile profile profile"
+                                     "work work play play"
+                                     "study study exercise exercise"
+                                     "social social care care";
+            }
+
+            @media (min-width: 968px) {
+                .grid-container {
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-template-rows: repeat(3, 1fr);
+                    grid-template-areas: "profile work play study"
+                                         "profile work play study"
+                                     "profile exercise social care";
+                }
             }
         }
+
+
     </style>
 </head>
 <body>
 <div class="grid-container">
     <div class="card card-profile">
-        <div class="card-profile">
-            Report for
-            Jeremy Robson
+        <div class="card-profile-detail">
+            <div class="card-profile-img">
+                <img src="images/image-jeremy.png" alt="" class="src">
+            </div>
+            <p>Report for</p>
+            <h1>
+                Jeremy Robson</h1>
         </div>
         <div class="card-week">
-            Daily
-            Weekly
-            Monthly
+            <ul>
+                <li>Daily</li>
+                <li>Weekly</li>
+                <li>Monthly</li>
+            </ul>
         </div>
     </div>
     <div class="card-work card">
@@ -166,63 +236,89 @@
         </div>
         <div class="card-bottom">
             <div class="card-bottom-title">
-                <h2>Work</h2>
+                <h3>Work</h3>
+                <span><img src="images/icon-ellipsis.svg" alt="more"/></span>
+            </div>
+            <h1>
+                5hrs
+            </h1>
+            <p>Last week - 36hrs</p>
+        </div>
+    </div>
+    <div class="card-play card">
+        <div class="card-detail">
+            &nbsp;
+        </div>
+        <div class="card-bottom">
+            <div class="card-bottom-title">
+                <h3>Play</h3>
+                <span><img src="images/icon-ellipsis.svg" alt="more"/></span>
+            </div>
+            <h1>
+                5hrs
+            </h1>
+            <p>Last week - 36hrs</p>
+        </div>
+    </div>
+    <div class="card-study card">
+        <div class="card-detail">
+            &nbsp;
+        </div>
+        <div class="card-bottom">
+            <div class="card-bottom-title">
+                <h3>Work</h3>
                 <span><img src="images/icon-ellipsis.svg" alt="more"/></span>
             </div>
             <h1>
                 5hrs <!-- daily -->
             </h1>
-            Previous - 7hrs <!-- daily -->
-            32hrs <!-- weekly -->
-            Previous - 36hrs <!-- weekly -->
-            103hrs <!-- monthly -->
-            Previous - 128hrs <!-- monthly -->
+            <p>Last week - 36hrs</p>
         </div>
     </div>
-    <div class="card-play card">
-        Play
-        1hr <!-- daily -->
-        Previous - 2hrs <!-- daily -->
-        10hrs <!-- weekly -->
-        Previous - 8hrs <!-- weekly -->
-        23hrs <!-- monthly -->
-        Previous - 29hrs <!-- monthly -->
-    </div>
-    <div class="card-study card">
-        Study
-        0hrs <!-- daily -->
-        Previous - 1hr <!-- daily -->
-        4hrs <!-- weekly -->
-        Previous - 7hrs <!-- weekly -->
-        13hrs <!-- monthly -->
-        Previous - 19hrs <!-- monthly -->
-    </div>
     <div class="card-exercise card">
-        Exercise
-        1hr <!-- daily -->
-        Previous - 1hr <!-- daily -->
-        4hrs <!-- weekly -->
-        Previous - 5hrs <!-- weekly -->
-        11hrs <!-- monthly -->
-        Previous - 18hrs <!-- monthly -->
+        <div class="card-detail">
+            &nbsp;
+        </div>
+        <div class="card-bottom">
+            <div class="card-bottom-title">
+                <h3>Work</h3>
+                <span><img src="images/icon-ellipsis.svg" alt="more"/></span>
+            </div>
+            <h1>
+                5hrs
+            </h1>
+            <p>Last week - 36hrs</p>
+        </div>
     </div>
     <div class="card-social card">
-        Social
-        1hr <!-- daily -->
-        Previous - 3hrs <!-- daily -->
-        5hrs <!-- weekly -->
-        Previous - 10hrs <!-- weekly -->
-        21hrs <!-- monthly -->
-        Previous - 23hrs <!-- monthly -->
+        <div class="card-detail">
+            &nbsp;
+        </div>
+        <div class="card-bottom">
+            <div class="card-bottom-title">
+                <h3>Work</h3>
+                <span><img src="images/icon-ellipsis.svg" alt="more"/></span>
+            </div>
+            <h1>
+                5hrs
+            </h1>
+            <p>Last week - 36hrs</p>
+        </div>
     </div>
     <div class="card-care card">
-        Self Care
-        0hrs <!-- daily -->
-        Previous - 1hr <!-- daily -->
-        2hrs <!-- weekly -->
-        Previous - 2hrs <!-- weekly -->
-        7hrs <!-- monthly -->
-        Previous - 11hrs <!-- monthly -->
+        <div class="card-detail">
+            &nbsp;
+        </div>
+        <div class="card-bottom">
+            <div class="card-bottom-title">
+                <h3>Work</h3>
+                <span><img src="images/icon-ellipsis.svg" alt="more"/></span>
+            </div>
+            <h1>
+                5hrs <!-- daily -->
+            </h1>
+            <p>Last week - 36hrs</p>
+        </div>
     </div>
 </div>
 </body>
